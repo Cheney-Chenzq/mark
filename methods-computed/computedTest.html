@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>总价格：{{totalPrice}}</h2>
+      <h3>{{getSum()}}</h3>
+    </div>
+
+    <script>
+          const app=new Vue({
+            el:'#app',
+            data(){
+              return{
+                 goodList:[{id:1100,name:"苹果",price:4},{id:1111,name:"香蕉",price:2},{id:1112,name:"冬枣",price:8}]
+               // goodList:[0,2,4,6]
+
+              }
+            },
+            methods:{
+              getSum() {
+                let sum=0;
+                for(item of this.goodList){
+                 sum+= item['price']
+                }
+                return sum;
+      }
+            },
+            computed: {
+              totalPrice(){
+                let that =this;
+                  return that.goodList.reduce((pre,cuv)=>{
+                      return  pre+cuv.price
+                },0);
+              
+                // return this.goodList.reduce(
+                //   (a,b)=>{
+                //       return a+b;
+                //   }
+                // )
+              }
+            }
+              
+            
+          })
+    </script>
+  </body>
+</html>
